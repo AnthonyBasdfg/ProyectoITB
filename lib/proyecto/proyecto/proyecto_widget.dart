@@ -2037,7 +2037,20 @@ class _ProyectoWidgetState extends State<ProyectoWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  context.pushNamed('Tarea');
+                                                  context.pushNamed(
+                                                    'Tarea',
+                                                    queryParameters: {
+                                                      'proyectoID':
+                                                          serializeParam(
+                                                        getJsonField(
+                                                          proyectoGetProyectoResponse
+                                                              .jsonBody,
+                                                          r'''$.id''',
+                                                        ),
+                                                        ParamType.int,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
                                                 },
                                                 child: Column(
                                                   mainAxisSize:

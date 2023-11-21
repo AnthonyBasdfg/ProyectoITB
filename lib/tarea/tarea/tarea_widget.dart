@@ -12,7 +12,12 @@ import 'tarea_model.dart';
 export 'tarea_model.dart';
 
 class TareaWidget extends StatefulWidget {
-  const TareaWidget({super.key});
+  const TareaWidget({
+    super.key,
+    required this.proyectoID,
+  });
+
+  final int? proyectoID;
 
   @override
   _TareaWidgetState createState() => _TareaWidgetState();
@@ -86,7 +91,7 @@ class _TareaWidgetState extends State<TareaWidget> {
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               title: Text(
-                'All Tasks',
+                'Tareas de Proyecto',
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
               actions: [
@@ -758,7 +763,19 @@ class _TareaWidgetState extends State<TareaWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  'Below is a summary of tasks.',
+                                  'Listado de tareas del proyecto.',
+                                  style:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    widget.proyectoID?.toString(),
+                                    '0',
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).labelMedium,
                                 ),
@@ -776,10 +793,10 @@ class _TareaWidgetState extends State<TareaWidget> {
                                           0.0, 8.0, 0.0, 8.0),
                                       child: FlutterFlowChoiceChips(
                                         options: const [
-                                          ChipData('All'),
-                                          ChipData('Pending'),
-                                          ChipData('In Progress'),
-                                          ChipData('Completed')
+                                          ChipData('Todas'),
+                                          ChipData('Pendiente'),
+                                          ChipData('En Proceso'),
+                                          ChipData('Finalizado')
                                         ],
                                         onChanged: (val) => setState(() =>
                                             _model.choiceChipsValue =
@@ -842,7 +859,7 @@ class _TareaWidgetState extends State<TareaWidget> {
                                         controller: _model
                                                 .choiceChipsValueController ??=
                                             FormFieldController<List<String>>(
-                                          ['All'],
+                                          ['Pendiente'],
                                         ),
                                         wrapped: true,
                                       ),
@@ -959,7 +976,7 @@ class _TareaWidgetState extends State<TareaWidget> {
                                             alignment: const AlignmentDirectional(
                                                 -1.00, 0.00),
                                             child: Text(
-                                              'Task Name',
+                                              'Nombre',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .labelSmall,
@@ -975,7 +992,7 @@ class _TareaWidgetState extends State<TareaWidget> {
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(4.0, 0.0, 0.0, 0.0),
                                               child: Text(
-                                                'Assigned To',
+                                                'Asignado a',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelSmall,
@@ -1016,7 +1033,7 @@ class _TareaWidgetState extends State<TareaWidget> {
                                                       const AlignmentDirectional(
                                                           1.00, 0.00),
                                                   child: Text(
-                                                    'Status',
+                                                    'Estado',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .labelSmall,

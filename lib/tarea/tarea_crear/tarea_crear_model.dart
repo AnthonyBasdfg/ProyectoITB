@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'tarea_crear_widget.dart' show TareaCrearWidget;
@@ -6,21 +7,27 @@ import 'package:flutter/material.dart';
 class TareaCrearModel extends FlutterFlowModel<TareaCrearWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for yourName widget.
-  FocusNode? yourNameFocusNode;
-  TextEditingController? yourNameController;
-  String? Function(BuildContext, String?)? yourNameControllerValidator;
-  // State field(s) for city widget.
-  FocusNode? cityFocusNode;
-  TextEditingController? cityController;
-  String? Function(BuildContext, String?)? cityControllerValidator;
-  // State field(s) for state widget.
-  String? stateValue;
-  FormFieldController<String>? stateValueController;
-  // State field(s) for myBio widget.
-  FocusNode? myBioFocusNode;
-  TextEditingController? myBioController;
-  String? Function(BuildContext, String?)? myBioControllerValidator;
+  // State field(s) for Nombre widget.
+  FocusNode? nombreFocusNode;
+  TextEditingController? nombreController;
+  String? Function(BuildContext, String?)? nombreControllerValidator;
+  // State field(s) for Descripcion widget.
+  FocusNode? descripcionFocusNode;
+  TextEditingController? descripcionController;
+  String? Function(BuildContext, String?)? descripcionControllerValidator;
+  // State field(s) for FechaInicio widget.
+  FocusNode? fechaInicioFocusNode;
+  TextEditingController? fechaInicioController;
+  String? Function(BuildContext, String?)? fechaInicioControllerValidator;
+  // State field(s) for FechaFin widget.
+  FocusNode? fechaFinFocusNode;
+  TextEditingController? fechaFinController;
+  String? Function(BuildContext, String?)? fechaFinControllerValidator;
+  // State field(s) for Estado widget.
+  int? estadoValue;
+  FormFieldController<int>? estadoValueController;
+  // Stores action output result for [Backend Call - API (postTarea)] action in Button widget.
+  ApiCallResponse? apiResultr0l;
 
   /// Initialization and disposal methods.
 
@@ -29,14 +36,17 @@ class TareaCrearModel extends FlutterFlowModel<TareaCrearWidget> {
 
   @override
   void dispose() {
-    yourNameFocusNode?.dispose();
-    yourNameController?.dispose();
+    nombreFocusNode?.dispose();
+    nombreController?.dispose();
 
-    cityFocusNode?.dispose();
-    cityController?.dispose();
+    descripcionFocusNode?.dispose();
+    descripcionController?.dispose();
 
-    myBioFocusNode?.dispose();
-    myBioController?.dispose();
+    fechaInicioFocusNode?.dispose();
+    fechaInicioController?.dispose();
+
+    fechaFinFocusNode?.dispose();
+    fechaFinController?.dispose();
   }
 
   /// Action blocks are added here.

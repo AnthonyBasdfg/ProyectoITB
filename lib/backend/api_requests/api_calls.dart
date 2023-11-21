@@ -20,6 +20,7 @@ class ProyectoITBGroup {
   static PostProyectoCall postProyectoCall = PostProyectoCall();
   static GetEstadoCall getEstadoCall = GetEstadoCall();
   static GetTareaCall getTareaCall = GetTareaCall();
+  static PostTareaCall postTareaCall = PostTareaCall();
 }
 
 class GetUsuarioCall {
@@ -147,13 +148,28 @@ class GetProyectoCall {
 }
 
 class PostProyectoCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    String? nombre = '',
+    String? descripcion = '',
+    String? fechaInicio = '',
+    String? fechaFin = '',
+    int? estado,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "nombre": "$nombre",
+  "descripcion": "$descripcion",
+  "fechaInicio": "$fechaInicio",
+  "FechaFin": "$fechaFin",
+  "estado": $estado
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'postProyecto',
       apiUrl: '${ProyectoITBGroup.baseUrl}/Proyecto',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -250,6 +266,40 @@ class GetTareaCall {
         r'''$.content''',
         true,
       );
+}
+
+class PostTareaCall {
+  Future<ApiCallResponse> call({
+    String? nombre = '',
+    String? descripcion = '',
+    int? proyecto,
+    String? fechaInicio = '',
+    String? fechaFin = '',
+    int? estado,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "nombre": "$nombre",
+  "descripcion": "$descripcion",
+  "proyecto": $proyecto,
+  "fechaInicio": "$fechaInicio",
+  "FechaFin": "$fechaFin",
+  "estado": $estado
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'postTarea',
+      apiUrl: '${ProyectoITBGroup.baseUrl}/Tarea',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
 }
 
 /// End ProyectoITB Group Code

@@ -12,7 +12,12 @@ import 'proyecto_crear_model.dart';
 export 'proyecto_crear_model.dart';
 
 class ProyectoCrearWidget extends StatefulWidget {
-  const ProyectoCrearWidget({super.key});
+  const ProyectoCrearWidget({
+    super.key,
+    this.estadoId,
+  });
+
+  final int? estadoId;
 
   @override
   _ProyectoCrearWidgetState createState() => _ProyectoCrearWidgetState();
@@ -351,10 +356,13 @@ class _ProyectoCrearWidgetState extends State<ProyectoCrearWidget> {
                     );
                   }
                   final estadoGetEstadoResponse = snapshot.data!;
-                  return FlutterFlowDropDown<String>(
+                  return FlutterFlowDropDown<int>(
                     controller: _model.estadoValueController ??=
-                        FormFieldController<String>(null),
-                    options: (ProyectoITBGroup.getEstadoCall.nombre(
+                        FormFieldController<int>(null),
+                    options: List<int>.from(ProyectoITBGroup.getEstadoCall.id(
+                      estadoGetEstadoResponse.jsonBody,
+                    )!),
+                    optionLabels: (ProyectoITBGroup.getEstadoCall.nombre(
                       estadoGetEstadoResponse.jsonBody,
                     ) as List)
                         .map<String>((s) => s.toString())
@@ -389,8 +397,34 @@ class _ProyectoCrearWidgetState extends State<ProyectoCrearWidget> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    _model.apiResultr0l =
+                        await ProyectoITBGroup.postProyectoCall.call(
+                      nombre: _model.nombreController.text,
+                      descripcion: _model.descripcionController.text,
+                      fechaInicio: _model.fechaInicioController.text,
+                      fechaFin: _model.fechaFinController.text,
+                      estado: _model.estadoValue,
+                    );
+                    if ((_model.apiResultr0l?.succeeded ?? true)) {
+                      context.pushNamed('Proyecto');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Error interno',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                    }
+
+                    setState(() {});
                   },
                   text: 'Crear',
                   options: FFButtonOptions(

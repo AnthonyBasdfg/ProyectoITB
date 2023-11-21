@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'proyecto_crear_widget.dart' show ProyectoCrearWidget;
@@ -23,8 +24,10 @@ class ProyectoCrearModel extends FlutterFlowModel<ProyectoCrearWidget> {
   TextEditingController? fechaFinController;
   String? Function(BuildContext, String?)? fechaFinControllerValidator;
   // State field(s) for Estado widget.
-  String? estadoValue;
-  FormFieldController<String>? estadoValueController;
+  int? estadoValue;
+  FormFieldController<int>? estadoValueController;
+  // Stores action output result for [Backend Call - API (postProyecto)] action in Button widget.
+  ApiCallResponse? apiResultr0l;
 
   /// Initialization and disposal methods.
 

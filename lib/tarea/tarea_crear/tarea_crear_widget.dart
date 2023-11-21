@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,7 +12,12 @@ import 'tarea_crear_model.dart';
 export 'tarea_crear_model.dart';
 
 class TareaCrearWidget extends StatefulWidget {
-  const TareaCrearWidget({super.key});
+  const TareaCrearWidget({
+    super.key,
+    this.estadoId,
+  });
+
+  final int? estadoId;
 
   @override
   _TareaCrearWidgetState createState() => _TareaCrearWidgetState();
@@ -27,14 +33,17 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
     super.initState();
     _model = createModel(context, () => TareaCrearModel());
 
-    _model.yourNameController ??= TextEditingController();
-    _model.yourNameFocusNode ??= FocusNode();
+    _model.nombreController ??= TextEditingController();
+    _model.nombreFocusNode ??= FocusNode();
 
-    _model.cityController ??= TextEditingController();
-    _model.cityFocusNode ??= FocusNode();
+    _model.descripcionController ??= TextEditingController();
+    _model.descripcionFocusNode ??= FocusNode();
 
-    _model.myBioController ??= TextEditingController();
-    _model.myBioFocusNode ??= FocusNode();
+    _model.fechaInicioController ??= TextEditingController();
+    _model.fechaInicioFocusNode ??= FocusNode();
+
+    _model.fechaFinController ??= TextEditingController();
+    _model.fechaFinFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -106,7 +115,7 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                     child: Text(
-                      'Crear tarea',
+                      'Crear Tarea',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: 'Outfit',
@@ -132,12 +141,12 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
               child: TextFormField(
-                controller: _model.yourNameController,
-                focusNode: _model.yourNameFocusNode,
+                controller: _model.nombreController,
+                focusNode: _model.nombreFocusNode,
                 textCapitalization: TextCapitalization.words,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Your Name',
+                  labelText: 'Nombre',
                   labelStyle: FlutterFlowTheme.of(context).labelMedium,
                   hintStyle: FlutterFlowTheme.of(context).labelMedium,
                   enabledBorder: OutlineInputBorder(
@@ -175,148 +184,19 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 validator:
-                    _model.yourNameControllerValidator.asValidator(context),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-              child: TextFormField(
-                controller: _model.cityController,
-                focusNode: _model.cityFocusNode,
-                textCapitalization: TextCapitalization.words,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Your City',
-                  labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                  hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).error,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  contentPadding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
-                validator: _model.cityControllerValidator.asValidator(context),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
-              child: FlutterFlowDropDown<String>(
-                controller: _model.stateValueController ??=
-                    FormFieldController<String>(
-                  _model.stateValue ??= 'State',
-                ),
-                options: const [
-                  'State',
-                  'Alabama',
-                  'Alaska',
-                  'Arizona',
-                  'Arkansas',
-                  'California',
-                  'Colorado',
-                  'Connecticut',
-                  'Delaware',
-                  'Florida',
-                  'Georgia',
-                  'Hawaii',
-                  'Idaho',
-                  'Illinoi',
-                  'Indiana',
-                  'Iowa',
-                  'Kansas',
-                  'Kentucky',
-                  'Louisiana',
-                  'Maine',
-                  'Maryland',
-                  'Massachusetts',
-                  'Michigan',
-                  'Minnesota',
-                  'Mississippi',
-                  'Missouri',
-                  'Monta',
-                  'Nebraska',
-                  'Nevada',
-                  'New Hampshire',
-                  'New Jersey',
-                  'New Mexico',
-                  'New York',
-                  'North Carolina',
-                  'North Dak',
-                  'Ohio',
-                  'Oklahoma',
-                  'Oregon',
-                  'Pennsylvani',
-                  'Rhode Island',
-                  'South Caroli',
-                  'South Dakota',
-                  'Tennessee',
-                  'Texas',
-                  'Utah',
-                  'Vermont',
-                  'Virginia',
-                  'Washingto',
-                  'West Virginia',
-                  'Wisconsin',
-                  'Wyoming'
-                ],
-                onChanged: (val) => setState(() => _model.stateValue = val),
-                width: double.infinity,
-                height: 56.0,
-                textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                hintText: 'Select State',
-                icon: Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 15.0,
-                ),
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                elevation: 2.0,
-                borderColor: FlutterFlowTheme.of(context).alternate,
-                borderWidth: 2.0,
-                borderRadius: 8.0,
-                margin: const EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 12.0, 4.0),
-                hidesUnderline: true,
-                isSearchable: false,
-                isMultiSelect: false,
+                    _model.nombreControllerValidator.asValidator(context),
               ),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
               child: TextFormField(
-                controller: _model.myBioController,
-                focusNode: _model.myBioFocusNode,
+                controller: _model.descripcionController,
+                focusNode: _model.descripcionFocusNode,
                 textCapitalization: TextCapitalization.sentences,
                 obscureText: false,
                 decoration: InputDecoration(
                   labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                  hintText: 'Your bio',
+                  hintText: 'Descripcion',
                   hintStyle: FlutterFlowTheme.of(context).labelMedium,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -354,7 +234,162 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 textAlign: TextAlign.start,
                 maxLines: 3,
-                validator: _model.myBioControllerValidator.asValidator(context),
+                validator:
+                    _model.descripcionControllerValidator.asValidator(context),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+              child: TextFormField(
+                controller: _model.fechaInicioController,
+                focusNode: _model.fechaInicioFocusNode,
+                textCapitalization: TextCapitalization.words,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Fecha de Inicio',
+                  labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                  hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).alternate,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primary,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  filled: true,
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  contentPadding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                ),
+                style: FlutterFlowTheme.of(context).bodyMedium,
+                validator:
+                    _model.fechaInicioControllerValidator.asValidator(context),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+              child: TextFormField(
+                controller: _model.fechaFinController,
+                focusNode: _model.fechaFinFocusNode,
+                textCapitalization: TextCapitalization.words,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Fecha de Fin',
+                  labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                  hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).alternate,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primary,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  filled: true,
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  contentPadding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                ),
+                style: FlutterFlowTheme.of(context).bodyMedium,
+                validator:
+                    _model.fechaFinControllerValidator.asValidator(context),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
+              child: FutureBuilder<ApiCallResponse>(
+                future: ProyectoITBGroup.getEstadoCall.call(),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  final estadoGetEstadoResponse = snapshot.data!;
+                  return FlutterFlowDropDown<int>(
+                    controller: _model.estadoValueController ??=
+                        FormFieldController<int>(null),
+                    options: List<int>.from(ProyectoITBGroup.getEstadoCall.id(
+                      estadoGetEstadoResponse.jsonBody,
+                    )!),
+                    optionLabels: (ProyectoITBGroup.getEstadoCall.nombre(
+                      estadoGetEstadoResponse.jsonBody,
+                    ) as List)
+                        .map<String>((s) => s.toString())
+                        .toList(),
+                    onChanged: (val) =>
+                        setState(() => _model.estadoValue = val),
+                    width: double.infinity,
+                    height: 56.0,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                    hintText: 'Estado',
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 15.0,
+                    ),
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 2.0,
+                    borderColor: FlutterFlowTheme.of(context).alternate,
+                    borderWidth: 2.0,
+                    borderRadius: 8.0,
+                    margin:
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 12.0, 4.0),
+                    hidesUnderline: true,
+                    isSearchable: false,
+                    isMultiSelect: false,
+                  );
+                },
               ),
             ),
             Align(
@@ -362,8 +397,35 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    _model.apiResultr0l =
+                        await ProyectoITBGroup.postTareaCall.call(
+                      nombre: _model.nombreController.text,
+                      descripcion: _model.descripcionController.text,
+                      proyecto: 1,
+                      fechaInicio: _model.fechaInicioController.text,
+                      fechaFin: _model.fechaFinController.text,
+                      estado: _model.estadoValue,
+                    );
+                    if ((_model.apiResultr0l?.succeeded ?? true)) {
+                      context.pushNamed('Proyecto');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Error interno',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                    }
+
+                    setState(() {});
                   },
                   text: 'Crear',
                   options: FFButtonOptions(

@@ -72,13 +72,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const TareaWidget() : const LoginWidget(),
+          appStateNotifier.loggedIn ? const ProyectoWidget() : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const TareaWidget() : const LoginWidget(),
+              appStateNotifier.loggedIn ? const ProyectoWidget() : const LoginWidget(),
         ),
         FFRoute(
           name: 'Crear',
@@ -93,7 +93,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Tarea',
           path: '/tarea',
-          builder: (context, params) => const TareaWidget(),
+          builder: (context, params) => TareaWidget(
+            proyectoID: params.getParam('proyectoID', ParamType.int),
+          ),
         ),
         FFRoute(
           name: 'Proyecto',
@@ -101,14 +103,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ProyectoWidget(),
         ),
         FFRoute(
-          name: 'TareaCrear',
-          path: '/tareaCrear',
-          builder: (context, params) => const TareaCrearWidget(),
-        ),
-        FFRoute(
           name: 'ProyectoCrear',
           path: '/proyectoCrear',
-          builder: (context, params) => const ProyectoCrearWidget(),
+          builder: (context, params) => ProyectoCrearWidget(
+            estadoId: params.getParam('estadoId', ParamType.int),
+          ),
+        ),
+        FFRoute(
+          name: 'TareaCrear',
+          path: '/tareaCrear',
+          builder: (context, params) => TareaCrearWidget(
+            estadoId: params.getParam('estadoId', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
