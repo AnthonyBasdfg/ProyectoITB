@@ -94,13 +94,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Tarea',
           path: '/tarea',
           builder: (context, params) => TareaWidget(
-            proyectoID: params.getParam('proyectoID', ParamType.int),
+            proyectoID: params.getParam('proyectoID', ParamType.JSON),
           ),
         ),
         FFRoute(
           name: 'Proyecto',
           path: '/proyecto',
-          builder: (context, params) => const ProyectoWidget(),
+          builder: (context, params) => ProyectoWidget(
+            id: params.getParam('id', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'ProyectoCrear',

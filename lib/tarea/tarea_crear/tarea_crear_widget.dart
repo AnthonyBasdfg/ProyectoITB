@@ -402,7 +402,10 @@ class _TareaCrearWidgetState extends State<TareaCrearWidget> {
                         await ProyectoITBGroup.postTareaCall.call(
                       nombre: _model.nombreController.text,
                       descripcion: _model.descripcionController.text,
-                      proyecto: 1,
+                      proyecto: valueOrDefault<int>(
+                        widget.estadoId,
+                        0,
+                      ),
                       fechaInicio: _model.fechaInicioController.text,
                       fechaFin: _model.fechaFinController.text,
                       estado: _model.estadoValue,

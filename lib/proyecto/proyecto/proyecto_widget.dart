@@ -12,7 +12,12 @@ import 'proyecto_model.dart';
 export 'proyecto_model.dart';
 
 class ProyectoWidget extends StatefulWidget {
-  const ProyectoWidget({super.key});
+  const ProyectoWidget({
+    super.key,
+    this.id,
+  });
+
+  final String? id;
 
   @override
   _ProyectoWidgetState createState() => _ProyectoWidgetState();
@@ -2043,11 +2048,10 @@ class _ProyectoWidgetState extends State<ProyectoWidget> {
                                                       'proyectoID':
                                                           serializeParam(
                                                         getJsonField(
-                                                          proyectoGetProyectoResponse
-                                                              .jsonBody,
-                                                          r'''$.id''',
+                                                          proyectoItem,
+                                                          r'''$.Id''',
                                                         ),
-                                                        ParamType.int,
+                                                        ParamType.JSON,
                                                       ),
                                                     }.withoutNulls,
                                                   );

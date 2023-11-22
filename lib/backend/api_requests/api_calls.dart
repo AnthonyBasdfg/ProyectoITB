@@ -112,7 +112,7 @@ class GetProyectoCall {
 
   dynamic id(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].id''',
+        r'''$.content[:].Id''',
         true,
       );
   dynamic nombre(dynamic response) => getJsonField(

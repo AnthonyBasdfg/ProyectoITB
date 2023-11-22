@@ -17,7 +17,7 @@ class TareaWidget extends StatefulWidget {
     required this.proyectoID,
   });
 
-  final int? proyectoID;
+  final dynamic proyectoID;
 
   @override
   _TareaWidgetState createState() => _TareaWidgetState();
@@ -770,18 +770,6 @@ class _TareaWidgetState extends State<TareaWidget> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    widget.proyectoID?.toString(),
-                                    '0',
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 16.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1050,7 +1038,7 @@ class _TareaWidgetState extends State<TareaWidget> {
                               ),
                               Builder(
                                 builder: (context) {
-                                  final asd = ProyectoITBGroup.getTareaCall
+                                  final tareas = ProyectoITBGroup.getTareaCall
                                           .content(
                                             tareaGetTareaResponse.jsonBody,
                                           )
@@ -1065,11 +1053,11 @@ class _TareaWidgetState extends State<TareaWidget> {
                                     ),
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
-                                    itemCount: asd.length,
+                                    itemCount: tareas.length,
                                     separatorBuilder: (_, __) =>
                                         const SizedBox(height: 1.0),
-                                    itemBuilder: (context, asdIndex) {
-                                      final asdItem = asd[asdIndex];
+                                    itemBuilder: (context, tareasIndex) {
+                                      final tareasItem = tareas[tareasIndex];
                                       return Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
@@ -1103,7 +1091,7 @@ class _TareaWidgetState extends State<TareaWidget> {
                                                             -1.00, 0.00),
                                                     child: Text(
                                                       getJsonField(
-                                                        asdItem,
+                                                        tareasItem,
                                                         r'''$.Nombre''',
                                                       ).toString(),
                                                       style:
